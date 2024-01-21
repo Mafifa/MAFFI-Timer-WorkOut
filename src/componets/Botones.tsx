@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 interface CambiarImagenProps {
   imagen1: string;
   imagen2: string;
 }
 
-const Boton: React.FC<CambiarImagenProps> = ({ imagen1, imagen2 }) => {
+const Boton = ({ imagen1, imagen2 }: CambiarImagenProps) => {
   const [mostrarPrimeraImagen, setMostrarPrimeraImagen] = useState(true);
 
   const cambiarImagen = () => {

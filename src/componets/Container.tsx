@@ -1,13 +1,10 @@
-import { Component, ReactNode } from "react";
-
-type Props = { children: ReactNode };
-
-export class Container extends Component<Props> {
-  render() {
-    return (
-      <div className="max-w-screen-lg mr-auto ml-auto">
-        {this.props.children}
-      </div>
-    );
-  }
+interface Clase {
+  children: JSX.Element;
+  props?: String;
 }
+
+export const Container = ({ children, props }: Clase) => {
+  return (
+    <div className={`max-w-screen-lg mr-auto ml-auto ${props}`}>{children}</div>
+  );
+};
