@@ -46,6 +46,7 @@ export const HourCard = ({ props }: Clases) => {
         aria-describedby="helper-text-explanation"
         className="bg-gray-50 border-gray-300 h-36 w-36 text-6xl text-center rounded-2xl text-gray-900 focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2"
         placeholder="00"
+        value={count}
         onChange={(e) => setCount(parseInt(e.target.value, 10) || 0)} // Asegura que el valor sea un número válido
         required
       />
