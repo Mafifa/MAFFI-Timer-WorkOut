@@ -1,5 +1,5 @@
 import "./App.css";
-import { TimerCard } from "./componets/TimerCard.tsx";
+import { Temporizador } from "./componets/TimerCard.tsx";
 import { Header } from "./componets/Header.tsx";
 import { Container } from "./componets/Container.tsx";
 import { ProgressBar } from "./componets/ProgressBar.tsx";
@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       <Container props={"mt-20"}>
-        <TimerCard></TimerCard>
+        <Temporizador></Temporizador>
       </Container>
       <Container>
         <div className="mt-24">
