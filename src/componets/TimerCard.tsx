@@ -2,14 +2,16 @@ import { CheckAutoRep } from "./CheckAutoRep";
 import { ButtonsStartReset } from "./ButtonsStartReset";
 import React, { useEffect, useState } from "react";
 import { HourCard } from "./timer/HourCard";
+import BotonPlayStop from "./BotonPlayStop";
 
 export const Temporizador: React.FC = () => {
-  let checkRunnig = false;
+  const [checkRunnig, setCheckRunnig] = useState(false);
   //CON ESTA FUNCION CAMBIAMOS EL VALOR DE RUNNING
+  // CON ESTA FUNCION CAMBIAMOS EL VALOR DE RUNNING
   const isRunning = (resultado: boolean) => {
-    checkRunnig = resultado;
-    console.log(checkRunnig);
+    setCheckRunnig(resultado);
   };
+  console.log(`${checkRunnig} test SALIDA`);
 
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
@@ -91,8 +93,10 @@ export const Temporizador: React.FC = () => {
           </button>
         </div>
       </div>
-
-      <ButtonsStartReset onClick={isRunning} resultado={checkRunnig} />
+      <div className="flex">
+        <BotonPlayStop onClick={isRunning} resultado={checkRunnig} />
+        <ButtonsStartReset onClick={isRunning} resultado={checkRunnig} />
+      </div>
     </form>
   );
 };
