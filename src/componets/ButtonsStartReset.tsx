@@ -6,7 +6,7 @@ interface btnStartAndReset {
   onClick: (resultado: boolean) => void;
 }
 
-export const ButtonsStartReset = ({ resultado, onClick }: btnStartAndReset) => {
+export const ButtonRestart = ({ resultado, onClick }: btnStartAndReset) => {
   const handleClick = () => {
     resultado ? (resultado = false) : (resultado = true);
     onClick(resultado);

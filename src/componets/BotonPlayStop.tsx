@@ -11,9 +11,9 @@ const BotonPlayStop = ({ resultado, onClick }: CambiarImagenProps) => {
   const [mostrarPrimeraImagen, setMostrarPrimeraImagen] = useState(true);
 
   const cambiarImagen = () => {
-    console.log(`${resultado} test ingreso`);
+    console.log(`${resultado} TEST DE INGRESO`);
     resultado ? (resultado = false) : (resultado = true);
-    console.log(`${resultado} test proceso`);
+
     onClick(resultado);
 
     return setMostrarPrimeraImagen(!mostrarPrimeraImagen);
