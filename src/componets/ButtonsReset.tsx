@@ -2,14 +2,12 @@ import Boton from "./Botones";
 import ResetIco from "./../assets/Reset.svg";
 
 interface btnStartAndReset {
-  resultado: boolean;
-  onClick: (resultado: boolean) => void;
+  onClick: () => void;
 }
 
-export const ButtonRestart = ({ resultado, onClick }: btnStartAndReset) => {
+export const ButtonRestart = ({ onClick }: btnStartAndReset) => {
   const handleClick = () => {
-    resultado ? (resultado = false) : (resultado = true);
-    onClick(resultado);
+    onClick();
   };
   return (
     <div className="flex" onClick={handleClick}>

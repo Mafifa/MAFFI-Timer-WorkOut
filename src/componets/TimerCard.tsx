@@ -1,5 +1,5 @@
 import { CheckAutoRep } from "./CheckAutoRep";
-import { ButtonRestart } from "./ButtonsStartReset";
+import { ButtonRestart } from "./ButtonsReset";
 import React, { useEffect, useState } from "react";
 import { HourCard } from "./timer/HourCard";
 import BotonPlayStop from "./BotonPlayStop";
@@ -14,11 +14,13 @@ export const Temporizador: React.FC = () => {
   //REVISAR SI REINICIAR
 
   //CON ESTA FUNCION CAMBIAMOS EL VALOR DE RUNNING
-  const isRunning = (resultado: boolean) => {
-    setCheckRunnig(resultado);
+  const isRunning = () => {
+    setCheckRunnig(checkRunnig ? false : true);
   };
-  //PRUEBA PARA TEST
-  console.log(`${checkRunnig} TEST SALIDA [DEBE SER DIFERENTE AL INGRESO]`);
+
+  useEffect(() => {
+    console.log(`Is running: ${checkRunnig}`);
+  }, [checkRunnig]);
 
   //REINICIAR TEMPORIZADOR
   const restartTimer = () => {
@@ -26,11 +28,33 @@ export const Temporizador: React.FC = () => {
     setMinutes(0);
     setHours(0);
     setCheckRunnig(false);
+    console.log("Reiniciado Realizado");
   };
   //PARA EL FORMATO DE DOS DIGITOS
   const twoDigitFormat = (number: number) => {
     return number > 10 ? number : `0${number}`;
   };
+  //CUENTA REGRESIVA
+  if (checkRunnig) {
+    let timer: NodeJS.Timeout;
+
+    while (checkRunnig) {
+      timer = setInterval(() => {
+        if (seconds > 0) {
+          setSeconds((s) => s - 1);
+        } else if (minutes > 0) {
+          setMinutes((m) => m - 1);
+          setSeconds(59);
+        } else if (hours > 0) {
+          setHours((h) => h - 1);
+          setMinutes(59);
+          setSeconds(59);
+        } else {
+          setCheckRunnig(false);
+        }
+      }, 1000);
+    }
+  }
 
   return (
     <form className="">
@@ -91,7 +115,7 @@ export const Temporizador: React.FC = () => {
                   checkRunnig ? `hidden` : `block`
                 } flex justify-center items-center bg-gray-50 border-gray-300 h-36 w-36 text-6xl text-center rounded-2xl text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-2 `}
               >
-                {hours}
+                {twoDigitFormat(hours)}
               </span>
             </div>
 
@@ -126,8 +150,8 @@ export const Temporizador: React.FC = () => {
       </div>
       <div></div>
       <div className="flex">
-        <BotonPlayStop onClick={isRunning} resultado={checkRunnig} />
-        <ButtonRestart onClick={isRunning} resultado={checkRunnig} />
+        <BotonPlayStop onClick={isRunning} />
+        <ButtonRestart onClick={restartTimer} />
       </div>
     </form>
   );

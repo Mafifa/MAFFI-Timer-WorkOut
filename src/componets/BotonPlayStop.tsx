@@ -3,19 +3,14 @@ import StopIco from "./../assets/Stop.svg";
 import PlayIco from "./../assets/Play.svg";
 
 interface CambiarImagenProps {
-  resultado: boolean;
-  onClick: (resultado: boolean) => void;
+  onClick: () => void;
 }
 
-const BotonPlayStop = ({ resultado, onClick }: CambiarImagenProps) => {
+const BotonPlayStop = ({ onClick }: CambiarImagenProps) => {
   const [mostrarPrimeraImagen, setMostrarPrimeraImagen] = useState(true);
-
   const cambiarImagen = () => {
-    console.log(`${resultado} TEST DE INGRESO`);
-    resultado ? (resultado = false) : (resultado = true);
-
-    onClick(resultado);
-
+    onClick();
+    mostrarPrimeraImagen ? console.log("Play") : console.log("Pause");
     return setMostrarPrimeraImagen(!mostrarPrimeraImagen);
   };
 
